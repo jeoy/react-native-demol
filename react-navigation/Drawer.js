@@ -3,11 +3,12 @@
  */
 
 import React from 'react';
-import { Button, Platform, ScrollView } from 'react-native';
-import { DrawerNavigator, SafeAreaView } from 'react-navigation';
+import { Button, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import SampleText from './SampleText';
 
+import DrawerBanner from '../components/DrawerBanner.js'
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView>
     <SafeAreaView forceInset={{ top: 'always' }}>
@@ -25,7 +26,7 @@ const InboxScreen = ({ navigation }) => (
   <MyNavScreen banner={'Inbox Screen'} navigation={navigation} />
 );
 InboxScreen.navigationOptions = {
-  drawerLabel: 'Inbox',
+  drawerLabel: 'Inbox22',
   drawerIcon: ({ tintColor }) => (
     <MaterialIcons
       name="move-to-inbox"
@@ -33,6 +34,14 @@ InboxScreen.navigationOptions = {
       style={{ color: tintColor }}
     />
   ),
+  render() {
+   return (
+     <Button
+       onPress={() => alert('Notifications')}
+       title="Go to notifications"
+     />
+   );
+ }
 };
 
 const DraftsScreen = ({ navigation }) => (
@@ -44,6 +53,14 @@ DraftsScreen.navigationOptions = {
     <MaterialIcons name="drafts" size={24} style={{ color: tintColor }} />
   ),
 };
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
 
 const DrawerExample = DrawerNavigator(
   {
@@ -60,7 +77,12 @@ const DrawerExample = DrawerNavigator(
     initialRouteName: 'Drafts',
     contentOptions: {
       activeTintColor: '#e91e63',
+      itemsContainerStyle: {
+        marginVertical: 0,
+      },
     },
+    contentComponent: DrawerBanner,
+    drawerWidth: 300
   }
 );
 

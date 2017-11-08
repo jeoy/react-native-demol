@@ -18,5 +18,9 @@ export default SampleText;
 const styles = StyleSheet.create({
   sampleText: {
     margin: 14,
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: 'lightcoral',
   },
 });
