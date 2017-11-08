@@ -10,6 +10,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+
+
 // const uri = 'https://pickaface.net/gallery/avatar/48611139_161206_1430_quxoo90.png';
 
 export default class Menu extends Component{

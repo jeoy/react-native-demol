@@ -14,14 +14,33 @@ import {
   Dimensions,
   FlatList,
   SectionList,
-  Button
+  Button,
+  PanResponder
 } from 'react-native';
 
 import {
   StackNavigator,
 } from 'react-navigation';
 
-import MyMenu from './components/Menu';
+
+
+import {
+  Scene,
+  Router,
+  Actions,
+  Reducer,
+  ActionConst,
+  Overlay,
+  Tabs,
+  Modal,
+  Drawer,
+  Stack,
+  Lightbox,
+} from 'react-native-router-flux';
+
+import MyMenu from './components/Menu.js';
+import Login from './components/Login.js';
+import Login2 from './components/Login2.js';
 
 import SideMenu from 'react-native-side-menu';
 
@@ -58,7 +77,51 @@ class MainScreen extends Component {
   }
 }
 
+class demo extends Component {
+  render() {
+    return (
+      <View>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+};
+
+// export default class App extends Component {
+class SideMenuComp extends Component {
+
+      render() {
+        return (
+          <Router>
+
+
+            <Stack key="root"  >
+            <Drawer key="drawer"
+            hideNavBar={true}
+            drawerPosition="left"
+            contentComponent={demo}
+
+            drawerWidth={200}
+            >
+            <Stack>
+            <Scene key="Login" component={Login} title="Login111"/>
+
+              <Scene key="Login2" component={Login2} title="Login222"/>
+              </Stack>
+
+
+            </Drawer>
+                </Stack>
+          </Router>
+        );
+      }
+
+
+}
 export default class App extends Component {
+// class SideMenuComp extends Component {
     constructor(){
   super();
   this.state ={
