@@ -33,15 +33,7 @@ InboxScreen.navigationOptions = {
       size={24}
       style={{ color: tintColor }}
     />
-  ),
-  render() {
-   return (
-     <Button
-       onPress={() => alert('Notifications')}
-       title="Go to notifications"
-     />
-   );
- }
+  )
 };
 
 const DraftsScreen = ({ navigation }) => (
@@ -79,7 +71,7 @@ const DrawerExample = DrawerNavigator(
       activeTintColor: '#e91e63',
       itemsContainerStyle: {
         marginVertical: 0,
-      },
+      }
     },
     contentComponent: DrawerBanner,
     drawerWidth: 300
