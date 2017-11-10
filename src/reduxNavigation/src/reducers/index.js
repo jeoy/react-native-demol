@@ -24,6 +24,12 @@ function nav(state, action) {
         state
       );
       break;
+    case 'UpdateCurrentDashboardName':
+        nextState = AppNavigator.router.getStateForAction(
+          NavigationActions.navigate({ routeName: 'Chart' }),
+          state
+        );
+        break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

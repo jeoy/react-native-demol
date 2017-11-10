@@ -65,8 +65,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     goToChartList: (name, navigation) => {
         dispatch({ type: 'UpdateCurrentDashboardName', name });
-        // dispatch(navigation.navigate('Dashboard'));
-        dispatch(NavigationActions.navigate({ routeName: 'Chart' }))
+        // dispatch(navigation.navigate('Chart'));
+        // dispatch(NavigationActions.navigate({ routeName: 'Chart' }))
     }
 });
 
