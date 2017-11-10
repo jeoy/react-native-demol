@@ -80,7 +80,7 @@ const ExampleRoutes = {
     name: 'Link in Stack',
     description: 'Deep linking into a route in stack',
     screen: SimpleStack,
-    path: 'people/Jordan',
+    path: 'photos/Jordan'
   },
   LinkTabs: {
     name: 'Link to Settings Tab',

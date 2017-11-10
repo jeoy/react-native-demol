@@ -12,7 +12,7 @@ import {
   Button,
   PanResponder
 } from 'react-native';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import PropTypes from 'prop-types';
 
 
@@ -39,7 +39,22 @@ class Counter extends Component {
 
 // Reducer
 function counterStore(state = { count: 0 }, action) {
+    console.log('---------11-------');
+    console.log(state.count);
   const count = state.count
+  switch (action.type) {
+    case 'increase':
+      return { count: count + 1 }
+    default:
+      return state
+  }
+}
+
+
+function counterStore2(state = { count: 0 }, action) {
+    console.log('---------22-------');
+    console.log(state.count);
+    const count = state.count
   switch (action.type) {
     case 'increase':
       return { count: count + 1 }
@@ -50,7 +65,10 @@ function counterStore(state = { count: 0 }, action) {
 
 // Store 利用reducer建立一个store，自带了内部状态的更新方式
 
-const store = createStore(counterStore)
+const store = createStore(combineReducers({
+  counterStore,
+  counterStore2,
+}))
 
 
 // 组件连接
@@ -63,7 +81,7 @@ Counter.propTypes = {
 // Map Redux state to component props
 function mapStateToProps(state) {
   return {
-    value: state.count / 2   // 这里是UI对store 的监听
+    value: state.counterStore2.count / 2   // 这里是UI对store 的监听
   }
 }
 

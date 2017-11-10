@@ -3,15 +3,31 @@
  */
 
 import React from 'react';
-import { Button, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { StackNavigator, SafeAreaView } from 'react-navigation';
 import SampleText from './SampleText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Button,  List, ListItem  } from 'react-native-elements'
+
+
+
+const list = [
+    {
+       title: 'Appointments',
+       icon: 'av-timer'
+     },
+     {
+       title: 'Trips',
+       icon: 'flight-takeoff'
+     },
+]
 
 const MyNavScreen = ({ navigation, banner }) => (
   <SafeAreaView>
     <SampleText>{banner}</SampleText>
     <Button
+    large
+        icon={{name: 'cached'}}
       onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
       title="Go to a profile screen"
     />
@@ -21,6 +37,19 @@ const MyNavScreen = ({ navigation, banner }) => (
       onPress={() => navigation.navigate('Photos', { name: 'natasha' })}
       title="Go to a photos screen"
     />
+
+    <List containerStyle={{marginBottom: 20}}>
+      {
+        list.map((l, i) => (
+            <ListItem
+                   key={i}
+                   title={l.title}
+                   leftIcon={{name: l.icon}}
+             />
+        ))
+      }
+    </List>
+
     <Button onPress={() => navigation.goBack(null)} title="Go back" />
   </SafeAreaView>
 );
@@ -123,6 +152,7 @@ const SimpleStack = StackNavigator({
     screen: MyPhotosScreen,
   },
 }, {
+    initialRouteName: 'Home',
     headerMode: 'screen',
 });
 
