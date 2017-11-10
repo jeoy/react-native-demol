@@ -30,7 +30,7 @@ const list = [
      },
 ]
 
-export const DashboardList = ({CurrentGroupName, navigation, goBackToDashboard }) => (
+export const DashboardList = ({CurrentGroupName, navigation, goToChartList }) => (
         <ScrollView  style={styles.container}>
             <Banner title={CurrentGroupName}/>
             <List containerStyle={{marginBottom: 20}}>
@@ -40,6 +40,7 @@ export const DashboardList = ({CurrentGroupName, navigation, goBackToDashboard }
                            key={i}
                            title={l.title}
                            leftIcon={{name: l.icon}}
+                           onPress={() => goToChartList(l.title, navigation)}
                      />
                 ))
               }
@@ -50,10 +51,11 @@ export const DashboardList = ({CurrentGroupName, navigation, goBackToDashboard }
 DashboardList.propTypes = {
     CurrentGroupName: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
+    goToChartList: PropTypes.func.isRequired
 };
 
 DashboardList.navigationOptions = {
-    title: 'GVP'
+    title: 'DashboardList'
 };
 
 const mapStateToProps = state => ({
@@ -61,8 +63,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
-
+    goToChartList: (name, navigation) => {
+        dispatch({ type: 'UpdateCurrentDashboardName', name });
+        // dispatch(navigation.navigate('Dashboard'));
+        dispatch(NavigationActions.navigate({ routeName: 'Chart' }))
+    }
 });
 
 const styles = StyleSheet.create({

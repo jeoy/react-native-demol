@@ -4,23 +4,25 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 import { addNavigationHelpers, StackNavigator } from 'react-navigation'
 import GroupList from './GroupList'
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightyellow',
-  }
-});
-
+import DashboardList from './DashboardList';
+import ChartList from './ChartList'
 
 
 const MainScreen = StackNavigator({
-  GroupList: {
-    screen: GroupList,
-    path: 'grouplist'
-  }
+    Dashboard: {
+        screen: DashboardList,
+        path: 'Main/:GroupId'
+    },
+    Group: {
+        screen: GroupList,
+    },
+    Chart: {
+        screen: ChartList,
+        path: 'Main/:GroupId/:DashboardId'
+    }
 }, {
-    initialRouteName: 'GroupList',
-    headerMode: 'screen',
+    initialRouteName: 'Dashboard',
+    headerMode: 'none',
 });
 
 export default MainScreen;

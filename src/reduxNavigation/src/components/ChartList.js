@@ -7,23 +7,23 @@ import { Button,  List, ListItem  } from 'react-native-elements'
 
 const list = [
     {
-       name: 'Minecraft项目1',
+       name: '图表1',
        icon: 'av-timer'
      },
      {
-       name: 'Minecraft项目2',
+       name: '图表2',
        icon: 'flight-takeoff'
      },
      {
-       name: 'Minecraft项目3',
+       name: '图表3',
        icon: 'flight-takeoff'
      },
      {
-       name: 'Minecraft项目4',
+       name: '图表4',
        icon: 'flight-takeoff'
      },
      {
-       name: 'Minecraft项目5',
+       name: '图表5',
        icon: 'flight-takeoff'
      },
 ]
@@ -48,7 +48,7 @@ export const GroupList = ({ navigation, goBackToDashboard }) => (
 GroupList.navigationOptions = props => {
     const { navigation } = props;
     return {
-        headerTitle: '当前项目',
+        headerTitle: '当前仪表盘',
         headerLeft: (<Button
           onPress={() => navigation.goBack()}
           title="返回"

@@ -10,13 +10,9 @@ import GroupList from '../components/GroupList';
 
 
 export const AppNavigator = StackNavigator({
-        Group: {
-            screen: GroupList,
-            path: 'Main'},
-        Dashboard: {
-            screen: DashboardList,
-            path: 'Main/:GroupId'
-        }
+    Main: {
+        screen: MainScreen,
+        path: 'Main'}
     }, {
         headerMode: 'screen',
     });
