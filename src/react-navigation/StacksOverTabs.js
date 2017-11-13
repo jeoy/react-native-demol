@@ -34,6 +34,17 @@ const MyHomeScreen = ({ navigation }) => (
   <MyNavScreen banner="Home Screen" navigation={navigation} />
 );
 
+MyHomeScreen.navigationOptions = props => {
+    const { navigation } = props;
+    console.log(props);
+    return {
+        headerLeft: (<Button
+          onPress={() => navigation.goBack()}
+          title="返回"
+        />)
+    }
+};
+
 const MyProfileScreen = ({ navigation }) => (
   <MyNavScreen
     banner={`${navigation.state.params.name}s Profile`}
@@ -55,7 +66,7 @@ const TabNav = TabNavigator(
       screen: MyHomeScreen,
       path: '/',
       navigationOptions: {
-        title: 'Welcome',
+        title: 'Welcome233',
         tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor, focused }) => (
           <Ionicons

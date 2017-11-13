@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button,  List, ListItem  } from 'react-native-elements'
 import { StyleSheet, View } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+
+import * as navigationActions from '../action/navigation';
 
 
 const list = [
@@ -12,8 +14,10 @@ const list = [
        icon: 'av-timer'
      }
 ]
-// var title = this.props.title;
-const GobackBanner = ({ goToGroup, title }) => {
+
+class GobackBanner extends Component {
+  render() {
+    const { title } = this.props
     return (
         <View  style={styles.container}>
             <List containerStyle={styles.list}>
@@ -23,28 +27,16 @@ const GobackBanner = ({ goToGroup, title }) => {
                            key={i}
                            title={title}
                            leftIcon={{name: l.icon}}
-                           onPress={goToGroup}
+                           onPress={() => this.props.routeTo('Group', {name: title})}
                      />
                 ))
               }
             </List>
         </View>
-    );
+    )
+  }
 }
 
-
-GobackBanner.propTypes = {
-    title: PropTypes.string.isRequired,
-    goToGroup: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-});
-
-const mapDispatchToProps = dispatch => ({
-    goToGroup: () =>
-        dispatch(NavigationActions.navigate({ routeName: 'Group' }))
-});
 
 const styles = StyleSheet.create({
     container: {
@@ -54,4 +46,4 @@ const styles = StyleSheet.create({
         marginTop: 0
     }
 });
-export default connect(mapStateToProps, mapDispatchToProps)(GobackBanner);
+export default connect(()=>({}), {...navigationActions})(GobackBanner);

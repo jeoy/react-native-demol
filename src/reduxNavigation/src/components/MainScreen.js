@@ -11,18 +11,25 @@ import ChartList from './ChartList'
 const MainScreen = StackNavigator({
     Dashboard: {
         screen: DashboardList,
-        path: 'Main/:GroupId'
+        path: 'Main/:GroupId',
+        navigationOptions: ({navigation}) => ({
+        }),
     },
     Group: {
         screen: GroupList,
+        navigationOptions: {
+          title: 'state.CurrentGroupName',
+        },
     },
     Chart: {
         screen: ChartList,
-        path: 'Main/:GroupId/:DashboardId'
+        path: 'Main/:GroupId/:DashboardId',
     }
 }, {
     initialRouteName: 'Dashboard',
     headerMode: 'none',
+
 });
+
 
 export default MainScreen;

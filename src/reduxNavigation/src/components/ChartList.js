@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button,  List, ListItem  } from 'react-native-elements'
 
+import * as navigationActions from '../action/navigation';
+
 
 const list = [
     {
@@ -28,8 +30,9 @@ const list = [
      },
 ]
 
-export const GroupList = ({ navigation, goBackToDashboard }) => (
-    <View  style={styles.container}>
+export const ChartList = ({ navigation, CurrentDashboardName, goBack}) =>{
+    return (
+        <View  style={styles.container}>
         <List containerStyle={styles.list}>
         {
             list.map((l, i) => (
@@ -37,18 +40,18 @@ export const GroupList = ({ navigation, goBackToDashboard }) => (
                     key={i}
                     title={l.name}
                     leftIcon={{name: l.icon}}
-                    onPress={() => goBackToDashboard(l.name, navigation)}
+                    onPress={() => goBack(l.name, navigation)}
                     />
-            ))
-        }
-        </List>
-    </View>
-);
+                ))
+            }
+            </List>
+            </View>
+);}
 
-GroupList.navigationOptions = props => {
+ChartList.navigationOptions = props => {
     const { navigation } = props;
     return {
-        headerTitle: '当前仪表盘',
+        headerTitle: navigation.state.params.name,
         headerLeft: (<Button
           onPress={() => navigation.goBack()}
           title="返回"
@@ -56,21 +59,16 @@ GroupList.navigationOptions = props => {
     }
 };
 
-GroupList.propTypes = {
+ChartList.propTypes = {
     navigation: PropTypes.object.isRequired,
-    goBackToDashboard: PropTypes.func.isRequired
 };
 
 
 const mapStateToProps = state => ({
+    CurrentDashboardName: state.auth.CurrentDashboardName
 });
 
-const mapDispatchToProps = dispatch => ({
-    goBackToDashboard: (name, navigation) => {
-        dispatch({ type: 'UpdateCurrentGroupName', name });
-        dispatch(navigation.goBack());
-    }
-});
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'lightgray',
@@ -80,4 +78,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupList);
+export default connect(mapStateToProps, {...navigationActions})(ChartList);

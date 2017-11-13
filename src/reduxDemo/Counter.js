@@ -15,16 +15,15 @@ import {
 import { createStore, combineReducers } from 'redux';
 import PropTypes from 'prop-types';
 
-
 // UI 组件
 class Counter extends Component {
   render() {
-    const { value, onIncreaseClick } = this.props
+    const { value } = this.props
     return (
       <View style={styles.container}>
         <Button
           title="Increase"
-          onPress={ onIncreaseClick}
+          onPress={ this.props.onIncreaseClick}
         />
         <Text>{value}</Text>
 
@@ -40,6 +39,7 @@ class Counter extends Component {
 // Reducer
 function counterStore(state = { count: 0 }, action) {
     console.log('---------11-------');
+    console.log(state)
     console.log(state.count);
   const count = state.count
   switch (action.type) {
@@ -51,13 +51,39 @@ function counterStore(state = { count: 0 }, action) {
 }
 
 
-function counterStore2(state = { count: 0 }, action) {
+function counterStore2(state = { count2: 0 }, action) {
     console.log('---------22-------');
+    console.log(state.count2);
+    const count2 = state.count2
+  switch (action.type) {
+    case 'increase':
+      return { count2: count2 + 2 }
+    default:
+      return state
+  }
+}
+
+function counterStore3(state = { count3: 0 }, action) {
+    console.log('---------3-------');
+    console.log(state.count3);
+    const count3 = state.count3
+  switch (action.type) {
+    case 'increase':
+      return { count3: count3 + 3 }
+    default:
+      return state
+  }
+}
+
+
+
+function counterStore4(state = { count: 0 }, action) {
+    console.log('---------4-------');
     console.log(state.count);
     const count = state.count
   switch (action.type) {
     case 'increase':
-      return { count: count + 1 }
+      return { count: count + 4 }
     default:
       return state
   }
@@ -68,6 +94,8 @@ function counterStore2(state = { count: 0 }, action) {
 const store = createStore(combineReducers({
   counterStore,
   counterStore2,
+  counterStore3,
+  counterStore4
 }))
 
 
@@ -81,7 +109,7 @@ Counter.propTypes = {
 // Map Redux state to component props
 function mapStateToProps(state) {
   return {
-    value: state.counterStore2.count / 2   // 这里是UI对store 的监听
+    value: state.counterStore3.count3   // 这里是UI对store 的监听
   }
 }
 

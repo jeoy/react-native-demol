@@ -5,70 +5,68 @@ import { connect } from 'react-redux';
 import { Button,  List, ListItem  } from 'react-native-elements'
 import { NavigationActions } from 'react-navigation';
 
-import Banner from './Banner'
+import Banner from './Banner';
+import * as navigationActions from '../action/navigation';
 
 const list = [
     {
-       title: '仪表盘：红石发生器',
+       title: '仪表盘1',
        icon: 'av-timer'
      },
      {
-       title: '仪表盘：钻石发生器',
+       title: '仪表盘2',
        icon: 'flight-takeoff'
      },
      {
-       title: '仪表盘：黑曜石发生器',
+       title: '仪表盘3',
        icon: 'flight-takeoff'
      },
      {
-       title: '仪表盘：草块发生器',
+       title: '仪表盘4',
        icon: 'flight-takeoff'
      },
      {
-       title: '仪表盘：圆石石发生器',
+       title: '仪表盘5',
        icon: 'flight-takeoff'
      },
 ]
 
-export const DashboardList = ({CurrentGroupName, navigation, goToChartList }) => (
-        <ScrollView  style={styles.container}>
-            <Banner title={CurrentGroupName}/>
+class DashboardList extends Component {
+    render() {
+        return (
+            <ScrollView  style={styles.container}>
+            <Banner title={this.props.CurrentGroupName}/>
             <List containerStyle={{marginBottom: 20}}>
-              {
+            {
                 list.map((l, i) => (
                     <ListItem
-                           key={i}
-                           title={l.title}
-                           leftIcon={{name: l.icon}}
-                           onPress={() => goToChartList(l.title, navigation)}
-                     />
-                ))
-              }
-            </List>
-        </ScrollView>
-    );
+                        key={i}
+                        title={l.title}
+                        leftIcon={{name: l.icon}}
+                        onPress={() => this.props.routeTo('Chart', {name: l.title})}
+                        />
+                    ))
+                }
+                </List>
+                </ScrollView>
+            );
+        }
+}
 
 DashboardList.propTypes = {
     CurrentGroupName: PropTypes.string.isRequired,
     navigation: PropTypes.object.isRequired,
-    goToChartList: PropTypes.func.isRequired
-};
-
-DashboardList.navigationOptions = {
-    title: 'DashboardList'
 };
 
 const mapStateToProps = state => ({
-    CurrentGroupName: state.auth.CurrentGroupName
+    CurrentGroupName: state.group.CurrentGroupName
 });
 
-const mapDispatchToProps = dispatch => ({
-    goToChartList: (name, navigation) => {
-        dispatch({ type: 'UpdateCurrentDashboardName', name });
-        // dispatch(navigation.navigate('Chart'));
-        // dispatch(NavigationActions.navigate({ routeName: 'Chart' }))
-    }
-});
+// const mapDispatchToProps = dispatch => ({
+//     goToChartList: (data, navigation) => {
+//         dispatch({ type: 'ROUTE_TO', route: 'Chart', data });
+//     }
+// });
 
 const styles = StyleSheet.create({
   container: {
@@ -76,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardList);
+export default connect(mapStateToProps, {...navigationActions})(DashboardList);

@@ -5,6 +5,7 @@ import { AppRegistry } from 'react-native';
 
 import App from './src/reduxNavigation/App'
 // import App from './src/reduxNavigation/src/navigators/AppNavigator'
+// import App from './src/reduxNavigation/simpleTwiceDemo'
 
 // import App from './src/playground/test'
 AppRegistry.registerComponent('awesomeProject', () => App);
