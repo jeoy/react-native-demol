@@ -14,10 +14,6 @@ export default function auth(state = initialAuthState, action) {
       return { ...state, isLoggedIn: true };
     case 'Logout':
       return { ...state, isLoggedIn: false };
-    case 'UpdateCurrentGroup':
-        return { ...state, CurrentGroupName: action.name };
-    case 'UpdateCurrentDashboard':
-        return { ...state, CurrentDashboardName: action.name };
     default:
       return state;
   }
